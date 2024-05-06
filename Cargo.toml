@@ -1,0 +1,15 @@
+[package]
+name = "slaves_owner"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]
+name = "slaves_owner_server"
+path = "src/server.rs"
+
+[[bin]]
+name = "slaves_owner_client"
+path = "src/client.rs"
+
