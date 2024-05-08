@@ -1,0 +1,10 @@
+[Unit]
+Description=slaves owner client
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/slaves_owner_client
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
