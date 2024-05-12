@@ -23,6 +23,8 @@ tracing = { version = "0.1.40", features = ["async-await"] }
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
 upt = "0.7.0"
 users = "0.11.0"
+wallpaper = "3.2.0"
+xcap = "0.0.9"
 
 [[bin]]
 name = "slaves_owner_server"
