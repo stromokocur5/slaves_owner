@@ -121,7 +121,7 @@ async fn record_audio() -> Result<()> {
                 };
 
                 stream.play().unwrap();
-                tokio::time::sleep(tokio::time::Duration::from_secs(2)).await;
+                tokio::time::sleep(tokio::time::Duration::from_secs(5)).await;
                 stream.pause().unwrap();
             }
             x => {}
@@ -172,14 +172,16 @@ async fn record_webcam() -> Result<()> {
     let stream = dev.stream::<In, Mmap>(ContentType::Video, 4)?;
 
     let mut i = 0;
+    let whole = tokio::time::Duration::from_secs(5);
     let start = tokio::time::Instant::now();
     while let Ok(buffer) = stream.next().await {
         let buffer = buffer.lock();
         println!("#{buffer}");
 
         let _data: &[u8] = buffer.as_ref();
-        tokio::fs::write(format!("{i}.jpg"), _data).await?;
-        if start.elapsed() >= tokio::time::Duration::from_secs(5) {
+        tokio::fs::create_dir("video").await?;
+        tokio::fs::write(format!("video/{i}.jpg"), _data).await?;
+        if start.elapsed() >= whole {
             break;
         }
         i += 1;
